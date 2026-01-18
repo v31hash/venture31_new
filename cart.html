@@ -82,208 +82,148 @@
 
       <!-- Hero Section -->
       <main class="main-content">
-        <div class="pricing-page" id="pricing-section">
+        <div class="cart-page">
           <div class="container">
-            <div class="pricing-header text-center">
-              <h1>Simple, Transparent Pricing</h1>
-              <p class="pricing-description">
-                Professional web hosting starting at just $14.33/month. All plans include Google Cloud infrastructure, 
-                free WordPress, built-in caching, and 24/7 security monitoring.
+            <div class="cart-header">
+              <h1>Shopping Cart</h1>
+              <p class="cart-description" *ngIf="cartSummary.totalItems > 0">
+                Review your selected hosting plans before checkout
               </p>
-              
-              <div class="pricing-controls">
-                <div class="currency-toggle">
-                  <span [class.active]="selectedCurrency === 'USD'" (click)="setCurrency('USD')">USD ($)</span>
-                  <span [class.active]="selectedCurrency === 'CAD'" (click)="setCurrency('CAD')">CAD ($)</span>
-                </div>
-                
-                <div class="billing-toggle">
-                  <span [class.active]="!isAnnual" (click)="isAnnual = false">Monthly</span>
-                  <div class="toggle-switch" (click)="toggleBilling()">
-                    <div class="toggle-slider" [class.annual]="isAnnual"></div>
-                  </div>
-                  <span [class.active]="isAnnual" (click)="isAnnual = true">
-                    Annual <span class="save-badge">Save 20%</span>
-                  </span>
-                </div>
-              </div>
             </div>
 
-            <div class="plans-grid" *ngIf="plans.length > 0">
-              <div class="plan-card card" *ngFor="let plan of plans; let i = index" [class.featured]="plan.is_featured">
-                <div class="plan-badge" *ngIf="plan.is_featured">Most Popular</div>
-                
-                <div class="plan-content">
-                  <div class="plan-header">
-                    <div class="plan-icon" [style.background-color]="getIconColor(i) + '20'" [style.color]="getIconColor(i)">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path [attr.d]="getIconPath(i)"></path>
-                      </svg>
+            <div class="cart-content" *ngIf="cartSummary.totalItems > 0; else emptyCart">
+              <div class="cart-items">
+                <div class="cart-item card" *ngFor="let item of cartSummary.items">
+                  <div class="item-details">
+                    <div class="item-header">
+                      <h3>{{ item.plan.name }}</h3>
+                      <button class="remove-btn" (click)="removeItem(item.id)" title="Remove from cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      </button>
                     </div>
-                    <h3>{{ plan.name }}</h3>
-                    <p class="plan-subtitle">{{ plan.description }}</p>
-                  </div>
-
-                  <div class="plan-pricing">
-                    <div class="price-display">
-                      <span class="currency">{{ selectedCurrency === 'USD' ? '$' : 'C$' }}</span>
-                      <span class="amount">{{ getCurrentPrice(plan) }}</span>
-                      <span class="period">/{{ isAnnual ? 'year' : 'month' }}</span>
-                    </div>
-                    <ng-container *ngIf="isAnnual">
-                      <div class="price-note">
-                        {{ 'Save ' + (selectedCurrency === 'USD' ? '$' : 'C$') + getSavings(plan) + '/month' }}
+                    <p class="item-description">{{ item.plan.description }}</p>
+                    
+                    <div class="item-options">
+                      <div class="billing-cycle">
+                        <span class="label">Billing:</span>
+                        <span class="value">{{ item.billingCycle | titlecase }}</span>
+                        <span class="savings" *ngIf="item.billingCycle === 'yearly'">
+                          (Save {{ getSavingsPercentage(item) }}%)
+                        </span>
                       </div>
-                    </ng-container>
+                      <div class="currency">
+                        <span class="label">Currency:</span>
+                        <span class="value">{{ item.currency }}</span>
+                      </div>
+                    </div>
+
+                    <div class="item-features">
+                      <h4>Included Features:</h4>
+                      <ul class="features-list">
+                        <li *ngFor="let feature of item.plan.features.slice(0, 3)">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                            <polyline points="20,6 9,17 4,12"></polyline>
+                          </svg>
+                          {{ feature }}
+                        </li>
+                        <li *ngIf="item.plan.features.length > 3" class="more-features">
+                          +{{ item.plan.features.length - 3 }} more features
+                        </li>
+                      </ul>
+                    </div>
                   </div>
 
-                  <ul class="plan-features">
-                    <li *ngFor="let feature of plan.features" class="feature-item">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                        <polyline points="20,6 9,17 4,12"></polyline>
-                      </svg>
-                      {{ feature }}
-                    </li>
-                  </ul>
+                  <div class="item-pricing">
+                    <div class="quantity-controls">
+                      <label>Quantity:</label>
+                      <div class="quantity-input">
+                        <button (click)="updateQuantity(item.id, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+                        <span class="quantity">{{ item.quantity }}</span>
+                        <button (click)="updateQuantity(item.id, item.quantity + 1)">+</button>
+                      </div>
+                    </div>
+
+                    <div class="price-breakdown">
+                      <div class="unit-price">
+                        <span class="currency-symbol">{{ item.currency === 'USD' ? '$' : 'C$' }}</span>
+                        <span class="amount">{{ item.price.toFixed(2) }}</span>
+                        <span class="period">/{{ item.billingCycle === 'yearly' ? 'year' : 'month' }}</span>
+                      </div>
+                      <div class="total-price" *ngIf="item.quantity > 1">
+                        <span class="label">Total:</span>
+                        <span class="currency-symbol">{{ item.currency === 'USD' ? '$' : 'C$' }}</span>
+                        <span class="amount">{{ (item.price * item.quantity).toFixed(2) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-summary card">
+                <h2>Order Summary</h2>
+                
+                <div class="summary-details">
+                  <div class="summary-row">
+                    <span>Items ({{ cartSummary.totalItems }}):</span>
+                    <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ cartSummary.subtotal.toFixed(2) }}</span>
+                  </div>
+                  <div class="summary-row">
+                    <span>Setup Fee:</span>
+                    <span class="free">Free</span>
+                  </div>
+                  <div class="summary-row total">
+                    <span>Total:</span>
+                    <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ cartSummary.subtotal.toFixed(2) }}</span>
+                  </div>
                 </div>
 
-                <div class="plan-footer">
-                  <button (click)="addToCart(plan)" 
-                          class="btn btn-accent btn-full add-to-cart-btn">
-                    Get Started
+                <div class="checkout-actions">
+                  <button class="btn btn-primary btn-full checkout-btn">
+                    Proceed to Checkout
                   </button>
-                  <p class="plan-trial">30-day money-back guarantee</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="loading-state" *ngIf="isLoading">
-              <p>Loading pricing plans...</p>
-            </div>
-
-            <div class="features-comparison">
-              <h2 class="text-center">What's Included in Every Plan</h2>
-              <div class="included-features">
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Google Cloud Infrastructure</h3>
-                    <p>High-end availability and enterprise-grade reliability</p>
-                  </div>
+                  <button class="btn btn-secondary btn-full" (click)="clearCart()">
+                    Clear Cart
+                  </button>
+                  <a routerLink="/pricing" class="continue-shopping">
+                    ← Continue Shopping
+                  </a>
                 </div>
 
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
+                <div class="security-badges">
+                  <div class="security-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
+                    <span>Secure Checkout</span>
                   </div>
-                  <div class="included-text">
-                    <h3>Free WordPress Account</h3>
-                    <p>Ready-to-use WordPress installation included</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
+                  <div class="security-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                      <path d="M9 12l2 2 4-4"></path>
+                      <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
                     </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Built-in Caching (5x Faster)</h3>
-                    <p>Advanced caching for superior performance</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Free One-Click CDN</h3>
-                    <p>Global content delivery for instant loading</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Custom MySQL Database</h3>
-                    <p>Optimized database for peak performance</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>24/7 Security Monitoring</h3>
-                    <p>Server checks every 0.5 seconds for maximum security</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Email Marketing & AI Tools</h3>
-                    <p>Built-in tools to grow your audience and boost conversions</p>
-                  </div>
-                </div>
-
-                <div class="included-feature">
-                  <div class="included-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
-                  </div>
-                  <div class="included-text">
-                    <h3>Green-Friendly Hosting</h3>
-                    <p>100% renewable energy powered by Google's green infrastructure</p>
+                    <span>30-Day Money Back</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="faq-section">
-              <h2 class="text-center">Frequently Asked Questions</h2>
-              <div class="faq-grid">
-                <div class="faq-item" *ngFor="let faq of faqs">
-                  <h3>{{ faq.question }}</h3>
-                  <p>{{ faq.answer }}</p>
+            <ng-template #emptyCart>
+              <div class="empty-cart">
+                <div class="empty-cart-icon">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
                 </div>
+                <h2>Your cart is empty</h2>
+                <p>Discover our hosting plans and add them to your cart to get started.</p>
+                <a routerLink="/pricing" class="btn btn-primary btn-lg">Browse Plans</a>
               </div>
-            </div>
-
-            <div class="cta-section bg-primary">
-              <div class="cta-content text-center">
-                <h2 class="cta-title">Ready to Get Started?</h2>
-                <p class="cta-description">
-                  Join businesses worldwide who trust Venture31 for fast, secure, and eco-friendly web hosting.
-                </p>
-                <div class="cta-actions">
-                  <a routerLink="/register" class="btn btn-accent btn-lg">Start Free Trial</a>
-                  <a routerLink="/contact" class="btn btn-secondary btn-lg">Contact Sales</a>
-                </div>
-              </div>
-            </div>
+            </ng-template>
           </div>
         </div>
       </main>

@@ -82,104 +82,102 @@
 
       <!-- Hero Section -->
       <main class="main-content">
-        <div class="contact-page" id="contact-section">
+        <div class="checkout-page">
           <div class="container">
-            <div class="contact-header text-center">
-              <h1>Get in Touch</h1>
-              <p class="contact-description">
-                Have questions about our hosting services? Our expert team is here to help you find the perfect solution.
-              </p>
+            <div class="checkout-header">
+              <h1>Checkout</h1>
+              <p class="checkout-description">Complete your hosting plan purchase</p>
             </div>
 
-            <div class="contact-content">
-              <div class="contact-info">
-                <div class="info-card card">
-                  <div class="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
+            <div class="checkout-content" *ngIf="cartSummary.totalItems > 0; else emptyCheckout">
+              <div class="checkout-main">
+                <!-- Order Summary -->
+                <div class="order-summary card">
+                  <h2>Order Summary</h2>
+                  
+                  <div class="order-items">
+                    <div class="order-item" *ngFor="let item of cartSummary.items">
+                      <div class="item-info">
+                        <h3>{{ item.plan.name }}</h3>
+                        <p class="item-details">
+                          {{ item.billingCycle | titlecase }} billing • {{ item.currency }}
+                          <span *ngIf="item.quantity > 1"> • Qty: {{ item.quantity }}</span>
+                        </p>
+                      </div>
+                      <div class="item-price">
+                        <span class="currency">{{ item.currency === 'USD' ? '$' : 'C$' }}</span>
+                        <span class="amount">{{ (item.price * item.quantity).toFixed(2) }}</span>
+                      </div>
+                    </div>
                   </div>
-                  <h3>Visit Our Office</h3>
-                  <p>123 Tech Street<br>San Francisco, CA 94105<br>United States</p>
+
+                  <div class="order-totals">
+                    <div class="total-row">
+                      <span>Subtotal:</span>
+                      <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ cartSummary.subtotal.toFixed(2) }}</span>
+                    </div>
+                    <div class="total-row">
+                      <span>Setup Fee:</span>
+                      <span class="free">Free</span>
+                    </div>
+                    <div class="total-row">
+                      <span>Tax:</span>
+                      <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ calculateTax().toFixed(2) }}</span>
+                    </div>
+                    <div class="total-row final-total">
+                      <span>Total:</span>
+                      <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ calculateTotal().toFixed(2) }}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="info-card card">
-                  <div class="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
+                <!-- Account Information -->
+                <div class="account-section card">
+                  <h2>Account Information</h2>
+                  
+                  <div *ngIf="!isLoggedIn" class="login-prompt">
+                    <p>Already have an account? <a routerLink="/login" class="text-primary">Sign in here</a></p>
                   </div>
-                  <h3>Call Us</h3>
-                  <p>Sales: +1 (555) 123-4567<br>Support: +1 (555) 987-6543<br>Available 24/7</p>
-                </div>
 
-                <div class="info-card card">
-                  <div class="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                  </div>
-                  <h3>Email Us</h3>
-                  <p>sales&#64;venture31.com<br>support&#64;venture31.com<br>We respond within 1 hour</p>
-                </div>
-
-                <div class="info-card card">
-                  <div class="info-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12,6 12,12 16,14"></polyline>
-                    </svg>
-                  </div>
-                  <h3>Live Chat</h3>
-                  <p>Chat with our experts<br>Available 24/7<br>Average response: 30 seconds</p>
-                  <button class="btn btn-primary btn-sm">Start Chat</button>
-                </div>
-              </div>
-
-              <div class="contact-form-section">
-                <div class="form-card card">
-                  <h2>Send us a Message</h2>
-                  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+                  <form class="account-form" #accountForm="ngForm">
                     <div class="form-row">
                       <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName">First Name *</label>
                         <input
                           type="text"
                           id="firstName"
                           name="firstName"
-                          [(ngModel)]="formData.first_name"
+                          [(ngModel)]="accountData.firstName"
                           required
                           class="form-input"
-                          placeholder="John"
+                          [readonly]="isLoggedIn"
                         >
                       </div>
                       <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName">Last Name *</label>
                         <input
                           type="text"
                           id="lastName"
                           name="lastName"
-                          [(ngModel)]="formData.last_name"
+                          [(ngModel)]="accountData.lastName"
                           required
                           class="form-input"
-                          placeholder="Doe"
+                          [readonly]="isLoggedIn"
                         >
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label for="email">Email Address</label>
+                      <label for="email">Email Address *</label>
                       <input
                         type="email"
                         id="email"
                         name="email"
-                        [(ngModel)]="formData.email"
+                        [(ngModel)]="accountData.email"
                         required
                         email
                         class="form-input"
-                        placeholder="john@example.com"
+                        [readonly]="isLoggedIn"
                       >
                     </div>
 
@@ -189,118 +187,169 @@
                         type="text"
                         id="company"
                         name="company"
-                        [(ngModel)]="formData.company"
-                        class="form-input"
-                        placeholder="Your Company"
-                      >
-                    </div>
-
-                    <div class="form-group">
-                      <label for="subject">Subject</label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        [(ngModel)]="formData.subject"
-                        required
+                        [(ngModel)]="accountData.company"
                         class="form-input"
                       >
-                        <option value="">Select a subject</option>
-                        <option value="sales">Sales Inquiry</option>
-                        <option value="support">Technical Support</option>
-                        <option value="billing">Billing Question</option>
-                        <option value="partnership">Partnership</option>
-                        <option value="other">Other</option>
-                      </select>
                     </div>
 
-                    <div class="form-group">
-                      <label for="message">Message</label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        [(ngModel)]="formData.message"
+                    <div class="form-group" *ngIf="!isLoggedIn">
+                      <label for="password">Password *</label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        [(ngModel)]="accountData.password"
                         required
-                        rows="6"
+                        minlength="8"
                         class="form-input"
-                        placeholder="Tell us how we can help you..."
-                      ></textarea>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="checkbox-label">
-                        <input type="checkbox" [(ngModel)]="formData.newsletter_signup" name="newsletter">
-                        <span class="checkmark"></span>
-                        Subscribe to our newsletter for hosting tips and updates
-                      </label>
-                    </div>
-
-                    <button type="submit" [disabled]="!contactForm.form.valid || isLoading" class="btn btn-primary btn-full">
-                      <span *ngIf="!isLoading">Send Message</span>
-                      <span *ngIf="isLoading" class="loading-spinner">Sending...</span>
-                    </button>
-
-                    <div *ngIf="successMessage" class="success-message">
-                      {{ successMessage }}
-                    </div>
-
-                    <div *ngIf="errorMessage" class="error-message">
-                      {{ errorMessage }}
-                    </div>
-
-                    <div class="form-legal-notice">
-                      <p class="legal-text">
-                        By submitting this form, you agree to our 
-                        <a routerLink="/terms" fragment="top" class="text-primary">Terms of Service</a>.
-                      </p>
+                        placeholder="At least 8 characters"
+                      >
                     </div>
                   </form>
                 </div>
+
+                <!-- Payment Information -->
+                <div class="payment-section card">
+                  <h2>Payment Information</h2>
+                  
+                  <div class="payment-methods">
+                    <div class="payment-method" [class.selected]="selectedPaymentMethod === 'card'" (click)="selectedPaymentMethod = 'card'">
+                      <input type="radio" name="paymentMethod" value="card" [(ngModel)]="selectedPaymentMethod">
+                      <span>Credit/Debit Card</span>
+                      <div class="card-icons">
+                        <span class="card-icon">💳</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form class="payment-form" *ngIf="selectedPaymentMethod === 'card'">
+                    <div class="form-group">
+                      <label for="cardNumber">Card Number *</label>
+                      <input
+                        type="text"
+                        id="cardNumber"
+                        name="cardNumber"
+                        [(ngModel)]="paymentData.cardNumber"
+                        placeholder="1234 5678 9012 3456"
+                        class="form-input"
+                        maxlength="19"
+                        (input)="formatCardNumber($event)"
+                      >
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="expiryDate">Expiry Date *</label>
+                        <input
+                          type="text"
+                          id="expiryDate"
+                          name="expiryDate"
+                          [(ngModel)]="paymentData.expiryDate"
+                          placeholder="MM/YY"
+                          class="form-input"
+                          maxlength="5"
+                          (input)="formatExpiryDate($event)"
+                        >
+                      </div>
+                      <div class="form-group">
+                        <label for="cvv">CVV *</label>
+                        <input
+                          type="text"
+                          id="cvv"
+                          name="cvv"
+                          [(ngModel)]="paymentData.cvv"
+                          placeholder="123"
+                          class="form-input"
+                          maxlength="4"
+                        >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="cardName">Name on Card *</label>
+                      <input
+                        type="text"
+                        id="cardName"
+                        name="cardName"
+                        [(ngModel)]="paymentData.cardName"
+                        class="form-input"
+                      >
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms-section card">
+                  <div class="terms-content">
+                    <label class="checkbox-label">
+                      <input type="checkbox" [(ngModel)]="agreedToTerms" name="terms">
+                      <span class="checkmark"></span>
+                      I agree to the <a routerLink="/terms" fragment="top" class="text-primary">Terms of Service</a>
+                    </label>
+                    
+                    <label class="checkbox-label">
+                      <input type="checkbox" [(ngModel)]="subscribeNewsletter" name="newsletter">
+                      <span class="checkmark"></span>
+                      Subscribe to our newsletter for hosting tips and updates
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-sidebar">
+                <div class="checkout-actions card">
+                  <button 
+                    class="btn btn-primary btn-full checkout-btn"
+                    [disabled]="!canProceedToPayment() || isProcessing"
+                    (click)="processPayment()">
+                    <span *ngIf="!isProcessing">Complete Order</span>
+                    <span *ngIf="isProcessing">Processing...</span>
+                  </button>
+                  
+                  <a routerLink="/cart" class="btn btn-secondary btn-full">
+                    ← Back to Cart
+                  </a>
+                  
+                  <div class="security-info">
+                    <div class="security-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
+                      <span>SSL Encrypted</span>
+                    </div>
+                    <div class="security-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"></path>
+                        <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
+                      </svg>
+                      <span>30-Day Money Back</span>
+                    </div>
+                    <div class="security-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                      <span>99.9% Uptime SLA</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="support-options">
-              <h2 class="text-center">Other Ways to Get Help</h2>
-              <div class="support-grid">
-                <div class="support-card card">
-                  <div class="support-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
-                      <path d="M9 11H5a2 2 0 0 0-2 2v3c0 1.1.9 2 2 2h4l5 4V7l-5 4z"></path>
-                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                  </div>
-                  <h3>Knowledge Base</h3>
-                  <p>Find answers to common questions and step-by-step tutorials in our comprehensive knowledge base.</p>
-                  <a href="#" class="btn btn-secondary">Browse Articles</a>
+            <ng-template #emptyCheckout>
+              <div class="empty-checkout">
+                <div class="empty-icon">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
                 </div>
-
-                <div class="support-card card">
-                  <div class="support-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                  </div>
-                  <h3>Community Forum</h3>
-                  <p>Connect with other Venture31 users, share experiences, and get help from our community.</p>
-                  <a href="#" class="btn btn-secondary">Join Community</a>
-                </div>
-
-                <div class="support-card card">
-                  <div class="support-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                  </div>
-                  <h3>Video Tutorials</h3>
-                  <p>Watch our video tutorials to learn how to set up and manage your hosting account effectively.</p>
-                  <a href="#" class="btn btn-secondary">Watch Videos</a>
-                </div>
+                <h2>No items to checkout</h2>
+                <p>Add hosting plans to your cart before proceeding to checkout.</p>
+                <a routerLink="/pricing" class="btn btn-primary btn-lg">Browse Plans</a>
               </div>
-            </div>
+            </ng-template>
           </div>
         </div>
       </main>
