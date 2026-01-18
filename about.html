@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/global_styles.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/about.css">
     <title>Venture31</title>
   </head>
 
@@ -38,10 +39,10 @@
               </div>
               
               <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Pricing</a>
-                <a href="#">Contact</a>
+                <a href="index.html" title="Home">Home</a>
+                <a href="about.html" title="About">About</a>
+                <a href="pricing.html" title="Pricing">Pricing</a>
+                <a href="contact.html" title="Contact">Contact</a>
               </div>
               
               <div class="nav-actions">
@@ -82,183 +83,185 @@
 
       <!-- Hero Section -->
       <main class="main-content">
-        <div class="about-page" id="about-section">
-          <div class="container">
-            <div class="about-header text-center">
-              <h1>About Venture31</h1>
-              <p class="about-description">
-                <span *ngIf="!isLoading && plans.length > 0">
-                  Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $ {{ getStartingPrice() }} per month, powered by Google Cloud infrastructure.
-                </span>
-                <span *ngIf="isLoading">
-                  Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $14.33 per month, powered by Google Cloud infrastructure.
-                </span>
-              </p>
-            </div>
-
-            <div class="about-section">
-              <h2>Our Mission</h2>
-              <p>
-                <span *ngIf="!isLoading && plans.length > 0">
-                  At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
-                  Starting at just $ {{ getStartingPrice() }} per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
-                </span>
-                <span *ngIf="isLoading">
-                  At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
-                  Starting at just $14.33 per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
-                </span>
-              </p>
-            </div>
-
-            <div class="about-section">
-              <h2>What Makes Us Different</h2>
-              <div class="features-grid">
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                    </svg>
-                  </div>
-                  <h3>Google Cloud Infrastructure</h3>
-                  <p>Built on Google's robust cloud platform for high-end availability and enterprise-grade reliability you can trust.</p>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="m9 12 2 2 4-4"></path>
-                    </svg>
-                  </div>
-                  <h3>Free WordPress Account</h3>
-                  <p>Every hosting plan includes a free WordPress account, making it easy to build and manage your website.</p>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
-                      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path>
-                      <path d="m9 12 2 2 4-4"></path>
-                    </svg>
-                  </div>
-                  <h3>Built-in Caching</h3>
-                  <p>Our advanced caching technology delivers up to 5x faster site performance right out of the box.</p>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path d="m2 12c0-5.5 2.5-10 10-10s10 4.5 10 10-2.5 10-10 10-10-4.5-10-10z"></path>
-                    </svg>
-                  </div>
-                  <h3>Global CDN</h3>
-                  <p>Free one-click CDN ensures your website loads instantly from anywhere in the world.</p>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                  </div>
-                  <h3>Advanced Security</h3>
-                  <p>Our security systems monitor your site 24/7 with server checks every 0.5 seconds, so you don't have to worry.</p>
-                </div>
-
-                <div class="feature-item">
-                  <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                  </div>
-                  <h3>Email Marketing & AI Tools</h3>
-                  <p>Build and grow your audience with integrated email marketing and smart AI tools to boost your online presence.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-section green-section">
-              <div class="green-content">
-                <div class="green-text">
-                  <div class="green-badge">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path>
-                      <path d="m9 12 2 2 4-4"></path>
-                    </svg>
-                    Environmentally Responsible
-                  </div>
-                  <h2>Green-Friendly Hosting</h2>
-                  <p>
-                    Our data centers are part of the green Google Cloud infrastructure. Google has not only been carbon-neutral for many years, 
-                    but they match all electricity consumed by their servers and offices with energy from renewable sources like wind and solar.
-                  </p>
-                  <p>
-                    We are proud to partner with a company that's on a mission to soon decarbonize its electricity supply completely! 
-                    When you choose Venture31, you're not just getting superior hosting – you're making an environmentally responsible choice.
-                  </p>
-                </div>
-                <div class="green-visual">
-                  <div class="green-stats">
-                    <div class="green-stat">
-                      <div class="green-stat-number">100%</div>
-                      <div class="green-stat-label">Renewable Energy</div>
-                    </div>
-                    <div class="green-stat">
-                      <div class="green-stat-number">Carbon</div>
-                      <div class="green-stat-label">Neutral</div>
-                    </div>
-                    <div class="green-stat">
-                      <div class="green-stat-number">Eco</div>
-                      <div class="green-stat-label">Friendly</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-section">
-              <h2>Performance & Reliability</h2>
-              <div class="performance-grid">
-                <div class="performance-item">
-                  <div class="performance-number">5x</div>
-                  <div class="performance-label">Faster Loading</div>
-                  <p>Built-in caching technology</p>
-                </div>
-                <div class="performance-item">
-                  <div class="performance-number">24/7</div>
-                  <div class="performance-label">Monitoring</div>
-                  <p>Continuous security surveillance</p>
-                </div>
-                <div class="performance-item">
-                  <div class="performance-number">0.5s</div>
-                  <div class="performance-label">Server Checks</div>
-                  <p>Ultra-frequent health monitoring</p>
-                </div>
-                <div class="performance-item">
-                  <div class="performance-number">MySQL</div>
-                  <div class="performance-label">Custom Database</div>
-                  <p>Optimized for peak performance</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="cta-section bg-primary">
-              <div class="cta-content text-center">
-                <h2 class="cta-title">Ready to Experience the Difference?</h2>
-                <p class="cta-description">
-                  Join businesses worldwide who trust Venture31 for fast, secure, and environmentally responsible web hosting.
+        <section class="about">
+          <div class="about-page" id="about-section">
+            <div class="container">
+              <div class="about-header text-center">
+                <h1>About Venture31</h1>
+                <p class="about-description">
+                  <span *ngIf="!isLoading && plans.length > 0">
+                    Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $ {{ getStartingPrice() }} per month, powered by Google Cloud infrastructure.
+                  </span>
+                  <span *ngIf="isLoading">
+                    Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $14.33 per month, powered by Google Cloud infrastructure.
+                  </span>
                 </p>
-                <div class="cta-actions">
-                  <a routerLink="/register" class="btn btn-accent btn-lg">Get Started Today</a>
-                  <a routerLink="/contact" class="btn btn-secondary btn-lg">Contact Us</a>
+              </div>
+
+              <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>
+                  <span *ngIf="!isLoading && plans.length > 0">
+                    At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
+                    Starting at just $ {{ getStartingPrice() }} per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
+                  </span>
+                  <span *ngIf="isLoading">
+                    At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
+                    Starting at just $14.33 per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
+                  </span>
+                </p>
+              </div>
+
+              <div class="about-section">
+                <h2>What Makes Us Different</h2>
+                <div class="features-grid">
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                      </svg>
+                    </div>
+                    <h3>Google Cloud Infrastructure</h3>
+                    <p>Built on Google's robust cloud platform for high-end availability and enterprise-grade reliability you can trust.</p>
+                  </div>
+
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                    </div>
+                    <h3>Free WordPress Account</h3>
+                    <p>Every hosting plan includes a free WordPress account, making it easy to build and manage your website.</p>
+                  </div>
+
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                    </div>
+                    <h3>Built-in Caching</h3>
+                    <p>Our advanced caching technology delivers up to 5x faster site performance right out of the box.</p>
+                  </div>
+
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="m2 12c0-5.5 2.5-10 10-10s10 4.5 10 10-2.5 10-10 10-10-4.5-10-10z"></path>
+                      </svg>
+                    </div>
+                    <h3>Global CDN</h3>
+                    <p>Free one-click CDN ensures your website loads instantly from anywhere in the world.</p>
+                  </div>
+
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-600)" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
+                    </div>
+                    <h3>Advanced Security</h3>
+                    <p>Our security systems monitor your site 24/7 with server checks every 0.5 seconds, so you don't have to worry.</p>
+                  </div>
+
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-600)" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    </div>
+                    <h3>Email Marketing & AI Tools</h3>
+                    <p>Build and grow your audience with integrated email marketing and smart AI tools to boost your online presence.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="about-section green-section">
+                <div class="green-content">
+                  <div class="green-text">
+                    <div class="green-badge">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                      Environmentally Responsible
+                    </div>
+                    <h2>Green-Friendly Hosting</h2>
+                    <p>
+                      Our data centers are part of the green Google Cloud infrastructure. Google has not only been carbon-neutral for many years, 
+                      but they match all electricity consumed by their servers and offices with energy from renewable sources like wind and solar.
+                    </p>
+                    <p>
+                      We are proud to partner with a company that's on a mission to soon decarbonize its electricity supply completely! 
+                      When you choose Venture31, you're not just getting superior hosting – you're making an environmentally responsible choice.
+                    </p>
+                  </div>
+                  <div class="green-visual">
+                    <div class="green-stats">
+                      <div class="green-stat">
+                        <div class="green-stat-number">100%</div>
+                        <div class="green-stat-label">Renewable Energy</div>
+                      </div>
+                      <div class="green-stat">
+                        <div class="green-stat-number">Carbon</div>
+                        <div class="green-stat-label">Neutral</div>
+                      </div>
+                      <div class="green-stat">
+                        <div class="green-stat-number">Eco</div>
+                        <div class="green-stat-label">Friendly</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="about-section">
+                <h2>Performance & Reliability</h2>
+                <div class="performance-grid">
+                  <div class="performance-item">
+                    <div class="performance-number">5x</div>
+                    <div class="performance-label">Faster Loading</div>
+                    <p>Built-in caching technology</p>
+                  </div>
+                  <div class="performance-item">
+                    <div class="performance-number">24/7</div>
+                    <div class="performance-label">Monitoring</div>
+                    <p>Continuous security surveillance</p>
+                  </div>
+                  <div class="performance-item">
+                    <div class="performance-number">0.5s</div>
+                    <div class="performance-label">Server Checks</div>
+                    <p>Ultra-frequent health monitoring</p>
+                  </div>
+                  <div class="performance-item">
+                    <div class="performance-number">MySQL</div>
+                    <div class="performance-label">Custom Database</div>
+                    <p>Optimized for peak performance</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cta-section bg-primary">
+                <div class="cta-content text-center">
+                  <h2 class="cta-title">Ready to Experience the Difference?</h2>
+                  <p class="cta-description">
+                    Join businesses worldwide who trust Venture31 for fast, secure, and environmentally responsible web hosting.
+                  </p>
+                  <div class="cta-actions">
+                    <a routerLink="/register" class="btn btn-accent btn-lg">Get Started Today</a>
+                    <a routerLink="/contact" class="btn btn-secondary btn-lg">Contact Us</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <!-- Footer Section -->
