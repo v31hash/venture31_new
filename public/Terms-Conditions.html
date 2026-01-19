@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="author" content="Joseph Dennis">
+    <link rel="apple-touch-icon" href="https://venture31.com/wp-content/uploads/2025/11/apple-touch-icon-iphone-60x60-1.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://venture31.com/wp-content/uploads/2025/11/apple-touch-icon-ipad-76x76-1.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://venture31.com/wp-content/uploads/2025/11/apple-touch-icon-iphone-retina-120x120-1.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://venture31.com/wp-content/uploads/2025/11/apple-touch-icon-ipad-retina-152x152-1.png">
+    <link rel="icon" type="image/x-icon" href="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png">
+    <meta property="og:title" content="V31 Template Site">
+    <meta property="og:type" content="ecommerce">
+    <meta property="og:url" content="www.venture31.com">
+    <meta property="og:image" content="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png">
+    <meta property="og:image:alt" content="[logo/promotion-image]">
+    <meta property="og:description" content="Web Design & Hosting">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/global_styles.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <title>Venture31</title>
+  </head>
+
+  <body>
+    <div class="app">
+      <header class="header" [class.hidden]="isHeaderHidden">
+        <nav class="nav">
+          <div class="container">
+            <div class="nav-content">
+              <div class="nav-brand">
+                <a class="nav-brand-link">
+                  <img class="nav-brand-logo" src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31">
+                  <span class="nav-brand-text">Venture31</span>
+                </a>
+              </div>
+              
+              <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Pricing</a>
+                <a href="#">Contact</a>
+              </div>
+              
+              <div class="nav-actions">
+                <a routerLink="/cart" class="cart-link" title="Shopping Cart">
+                  <div class="cart-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                  </div>
+                </a>
+                <div *ngIf="!isLoggedIn; else loggedInMenu">
+                  <a routerLink="/login" class="nav-action-link">Login</a>
+                  <a routerLink="/register" class="nav-action-primary-link">Sign Up</a>
+                </div>
+              </div>
+              
+              <button class="mobile-menu-btn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+              </button>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="mobile-menu" [class.open]="mobileMenuOpen">
+          <div class="mobile-menu-content">
+            <a>Home</a>
+            <a>About</a>
+            <a>Pricing</a>
+            <a>Contact</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <h1>Terms and Conditions</h1>
+        <p>Last updated: June 29, 2025</p>
+        <p>Please read these terms and conditions carefully before using Our Service.</p>
+        <h2 id="interpretation-and-definitions">Interpretation and Definitions</h2>
+        <h3>Interpretation</h3>
+        <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+        <h3>Definitions</h3>
+        <p>For the purposes of these Terms and Conditions:</p>
+        <ul>
+        <li>
+        <p><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
+        </li>
+        <li>
+        <p><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</p>
+        </li>
+        <li>
+        <p><strong>Country</strong> refers to: Ontario,  Canada</p>
+        </li>
+        <li>
+        <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Venture31.</p>
+        </li>
+        <li>
+        <p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
+        </li>
+        <li>
+        <p><strong>Feedback</strong> means feedback, innovations or suggestions sent by You regarding the attributes, performance or features of our Service.</p>
+        </li>
+        <li>
+        <p><strong>Free Trial</strong> refers to a limited period of time that may be free when purchasing a Subscription.</p>
+        </li>
+        <li>
+        <p><strong>Goods</strong> refer to the items offered for sale on the Service.</p>
+        </li>
+        <li>
+        <p><strong>Orders</strong> mean a request by You to purchase Goods from Us.</p>
+        </li>
+        <li>
+        <p><strong>Promotions</strong> refer to contests, sweepstakes or other promotions offered through the Service.</p>
+        </li>
+        <li>
+        <p><strong>Service</strong> refers to the Website.</p>
+        </li>
+        <li>
+        <p><strong>Subscriptions</strong> refer to the services or access to the Service offered on a subscription basis by the Company to You.</p>
+        </li>
+        <li>
+        <p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</p>
+        </li>
+        <li>
+        <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
+        </li>
+        <li>
+        <p><strong>Website</strong> refers to Venture31, accessible from <a href="https://www.venture31.com" rel="external nofollow noopener" target="_blank">https://www.venture31.com</a></p>
+        </li>
+        <li>
+        <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
+        </li>
+        </ul>
+        <h2 id="acknowledgment">Acknowledgment</h2>
+        <p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
+        <p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
+        <p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
+        <p>You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</p>
+        <p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</p>
+        <h2 id="placing-orders-for-goods">Placing Orders for Goods</h2>
+        <p>By placing an Order for Goods through the Service, You warrant that You are legally capable of entering into binding contracts.</p>
+        <h3>Your Information</h3>
+        <p>If You wish to place an Order for Goods available on the Service, You may be asked to supply certain information relevant to Your Order including, without limitation, Your name, Your email, Your phone number, Your credit card number, the expiration date of Your credit card, Your billing address, and Your shipping information.</p>
+        <p>You represent and warrant that: (i) You have the legal right to use any credit or debit card(s) or other payment method(s) in connection with any Order; and that (ii) the information You supply to us is true, correct and complete.</p>
+        <p>By submitting such information, You grant us the right to provide the information to payment processing third parties for purposes of facilitating the completion of Your Order.</p>
+        <h3>Order Cancellation</h3>
+        <p>We reserve the right to refuse or cancel Your Order at any time for certain reasons including but not limited to:</p>
+        <ul>
+        <li>Goods availability</li>
+        <li>Errors in the description or prices for Goods</li>
+        <li>Errors in Your Order</li>
+        </ul>
+        <p>We reserve the right to refuse or cancel Your Order if fraud or an unauthorized or illegal transaction is suspected.</p>
+        <h4>Your Order Cancellation Rights</h4>
+        <p>Any Goods you purchase can only be returned in accordance with these Terms and Conditions and Our Returns Policy.</p>
+        <p>Our Returns Policy forms a part of these Terms and Conditions. Please read our Returns Policy to learn more about your right to cancel Your Order.</p>
+        <p>Your right to cancel an Order only applies to Goods that are returned in the same condition as You received them. You should also include all of the product's instructions, documents and wrappings. Goods that are damaged or not in the same condition as You received them or which are worn simply beyond opening the original packaging will not be refunded. You should therefore take reasonable care of the purchased Goods while they are in Your possession.</p>
+        <p>We will reimburse You no later than 14 days from the day on which We receive the returned Goods. We will use the same means of payment as You used for the Order, and You will not incur any fees for such reimbursement.</p>
+        <p>You will not have any right to cancel an Order for the supply of any of the following Goods:</p>
+        <ul>
+        <li>The supply of Goods made to Your specifications or clearly personalized.</li>
+        <li>The supply of Goods which according to their nature are not suitable to be returned, deteriorate rapidly or where the date of expiry is over.</li>
+        <li>The supply of Goods which are not suitable for return due to health protection or hygiene reasons and were unsealed after delivery.</li>
+        <li>The supply of Goods which are, after delivery, according to their nature, inseparably mixed with other items.</li>
+        <li>The supply of digital content which is not supplied on a tangible medium if the performance has begun with Your prior express consent and You have acknowledged Your loss of cancellation right.</li>
+        </ul>
+        <h3>Availability, Errors and Inaccuracies</h3>
+        <p>We are constantly updating Our offerings of Goods on the Service. The Goods available on Our Service may be mispriced, described inaccurately, or unavailable, and We may experience delays in updating information regarding our Goods on the Service and in Our advertising on other websites.</p>
+        <p>We cannot and do not guarantee the accuracy or completeness of any information, including prices, product images, specifications, availability, and services. We reserve the right to change or update information and to correct errors, inaccuracies, or omissions at any time without prior notice.</p>
+        <h3>Prices Policy</h3>
+        <p>The Company reserves the right to revise its prices at any time prior to accepting an Order.</p>
+        <p>The prices quoted may be revised by the Company subsequent to accepting an Order in the event of any occurrence affecting delivery caused by government action, variation in customs duties, increased shipping charges, higher foreign exchange costs and any other matter beyond the control of the Company. In that event, You will have the right to cancel Your Order.</p>
+        <h3>Payments</h3>
+        <p>All Goods purchased are subject to a one-time payment. Payment can be made through various payment methods we have available, such as Visa, MasterCard, Affinity Card, American Express cards or online payment methods (PayPal, for example).</p>
+        <p>Payment cards (credit cards or debit cards) are subject to validation checks and authorization by Your card issuer. If we do not receive the required authorization, We will not be liable for any delay or non-delivery of Your Order.</p>
+        <h2 id="subscriptions">Subscriptions</h2>
+        <h3>Subscription period</h3>
+        <p>The Service or some parts of the Service are available only with a paid Subscription. You will be billed in advance on a recurring and periodic basis (such as daily, weekly, monthly or annually), depending on the type of Subscription plan you select when purchasing the Subscription.</p>
+        <p>At the end of each period, Your Subscription will automatically renew under the exact same conditions unless You cancel it or the Company cancels it.</p>
+        <h3>Subscription cancellations</h3>
+        <p>You may cancel Your Subscription renewal either through Your Account settings page or by contacting the Company.
+        You will not receive a refund for the fees You already paid for Your current Subscription period and You will be able to access the Service until the end of Your current Subscription period.</p>
+        <h3>Billing</h3>
+        <p>You shall provide the Company with accurate and complete billing information including full name, address, state, zip code, telephone number, and a valid payment method information.</p>
+        <p>Should automatic billing fail to occur for any reason, the Company will issue an electronic invoice indicating that you must proceed manually, within a certain deadline date, with the full payment corresponding to the billing period as indicated on the invoice.</p>
+        <h3>Fee Changes</h3>
+        <p>The Company, in its sole discretion and at any time, may modify the Subscription fees. Any Subscription fee change will become effective at the end of the then-current Subscription period.</p>
+        <p>The Company will provide You with reasonable prior notice of any change in Subscription fees to give You an opportunity to terminate Your Subscription before such change becomes effective.</p>
+        <p>Your continued use of the Service after the Subscription fee change comes into effect constitutes Your agreement to pay the modified Subscription fee amount.</p>
+        <h3>Refunds</h3>
+        <p>Except when required by law, paid Subscription fees are non-refundable.</p>
+        <p>Certain refund requests for Subscriptions may be considered by the Company on a case-by-case basis and granted at the sole discretion of the Company.</p>
+        <h3>Free Trial</h3>
+        <p>The Company may, at its sole discretion, offer a Subscription with a Free Trial for a limited period of time.</p>
+        <p>You may be required to enter Your billing information in order to sign up for the Free Trial.</p>
+        <p>If You do enter Your billing information when signing up for a Free Trial, You will not be charged by the Company until the Free Trial has expired. On the last day of the Free Trial period, unless You canceled Your Subscription, You will be automatically charged the applicable Subscription fees for the type of Subscription You have selected.</p>
+        <p>At any time and without notice, the Company reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.</p>
+        <h2 id="promotions">Promotions</h2>
+        <p>Any Promotions made available through the Service may be governed by rules that are separate from these Terms.</p>
+        <p>If You participate in any Promotions, please review the applicable rules as well as our Privacy policy. If the rules for a Promotion conflict with these Terms, the Promotion rules will apply.</p>
+        <h2 id="user-accounts">User Accounts</h2>
+        <p>When You create an account with Us, You must provide Us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of Your account on Our Service.</p>
+        <p>You are responsible for safeguarding the password that You use to access the Service and for any activities or actions under Your password, whether Your password is with Our Service or a Third-Party Social Media Service.</p>
+        <p>You agree not to disclose Your password to any third party. You must notify Us immediately upon becoming aware of any breach of security or unauthorized use of Your account.</p>
+        <p>You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than You without appropriate authorization, or a name that is otherwise offensive, vulgar or obscene.</p>
+        <h2 id="intellectual-property">Intellectual Property</h2>
+        <p>The Service and its original content (excluding Content provided by You or other users), features and functionality are and will remain the exclusive property of the Company and its licensors.</p>
+        <p>The Service is protected by copyright, trademark, and other laws of both the Country and foreign countries.</p>
+        <p>Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of the Company.</p>
+        <h2 id="your-feedback-to-us">Your Feedback to Us</h2>
+        <p>You assign all rights, title and interest in any Feedback You provide the Company. If for any reason such assignment is ineffective, You agree to grant the Company a non-exclusive, perpetual, irrevocable, royalty free, worldwide right and license to use, reproduce, disclose, sub-license, distribute, modify and exploit such Feedback without restriction.</p>
+        <h2 id="links-to-other-websites">Links to Other Websites</h2>
+        <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.</p>
+        <p>The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+        <p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</p>
+        <h2 id="termination">Termination</h2>
+        <p>We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>
+        <p>Upon termination, Your right to use the Service will cease immediately. If You wish to terminate Your Account, You may simply discontinue using the Service.</p>
+        <h2 id="limitation-of-liability">Limitation of Liability</h2>
+        <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
+        <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
+        <p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>
+        <h2 id="as-is-and-as-available-disclaimer">"AS IS" and "AS AVAILABLE" Disclaimer</h2>
+        <p>The Service is provided to You &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.</p>
+        <p>Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</p>
+        <p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.</p>
+        <h2 id="governing-law">Governing Law</h2>
+        <p>The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.</p>
+        <h2 id="disputes-resolution">Disputes Resolution</h2>
+        <p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</p>
+        <h2 id="for-european-union-eu-users">For European Union (EU) Users</h2>
+        <p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which You are resident.</p>
+        <h2 id="united-states-federal-government-end-use-provisions">United States Federal Government End Use Provisions</h2>
+        <p>If You are a U.S. federal government end user, our Service is a &quot;Commercial Item&quot; as that term is defined at 48 C.F.R. §2.101.</p>
+        <h2 id="united-states-legal-compliance">United States Legal Compliance</h2>
+        <p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a &quot;terrorist supporting&quot; country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
+        <h2 id="severability-and-waiver">Severability and Waiver</h2>
+        <h3>Severability</h3>
+        <p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
+        <h3>Waiver</h3>
+        <p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not affect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
+        <h2 id="translation-interpretation">Translation Interpretation</h2>
+        <p>These Terms and Conditions may have been translated if We have made them available to You on our Service.
+        You agree that the original English text shall prevail in the case of a dispute.</p>
+        <h2 id="changes-to-these-terms-and-conditions">Changes to These Terms and Conditions</h2>
+        <p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
+        <p>By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.</p>
+        <h2 id="contact-us">Contact Us</h2>
+        <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
+        <ul>
+        <li>By email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543530393d3a1422313a2021263167657a373b39">[email&#160;protected]</a></li>
+        </ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+      </main>
+      
+      <!-- Footer Section -->
+      <footer class="footer bg-gray-900">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-section">
+              <div class="footer-brand">
+                <a routerLink="/" class="footer-brand-link">
+                  <img src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31" class="footer-brand-logo">
+                  <span class="footer-brand-text">Venture31</span>
+                </a>
+              </div>
+              <p class="footer-description">
+                Professional web hosting services with 99.9% uptime guarantee. 
+                Power your website with our reliable cloud infrastructure.
+              </p>
+              <div class="footer-social-links">
+                <a href="#" class="footer-social-link">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                  </svg>
+                </a>
+                <a href="#" class="footer-social-link">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                  </svg>
+                </a>
+                <a href="#" class="footer-social-link">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-section">
+              <h4>Hosting</h4>
+              <ul class="footer-links">
+                <li><a href="Shared-Hosting.html">Shared Hosting</a></li>
+                <li><a href="VPS-Hosting.html">VPS Hosting</a></li>
+                <li><a href="Dedicated-Servers.html">Dedicated Servers</a></li>
+                <li><a href="Cloud-Hosting.html">Cloud Hosting</a></li>
+                <li><a href="WordPress-Hosting.html">WordPress Hosting</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Company</h4>
+              <ul class="footer-links">
+                <li><a href="../contact.html">Contact Us</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="Blog.html">Blog</a></li>
+                <li><a href="Partners.html">Partners</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Support</h4>
+              <ul class="footer-links">
+                <li><a href="Help-Center.html">Help Center</a></li>
+                <li><a href="Documentation.html">Documentation</a></li>
+                <li><a href="Server-Status.html">Server Status</a></li>
+                <li><a href="Community.html">Community</a></li>
+                <li><a href="Report-Abuse.html">Report Abuse</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-bottom-content">
+              <p>&copy; 2025 Venture31. All rights reserved.</p>
+              <div class="footer-bottom-links">
+                <a href="public/Privacy-Policy.html" title="Privacy Policy">Privacy Policy</a>
+                <a href="public/Terms-Conditions.html" title="Terms & Conditions">Terms & Conditions</a>
+                <a href="public/Cookies-Policy.html" title="Cookie Policy">Cookie Policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
