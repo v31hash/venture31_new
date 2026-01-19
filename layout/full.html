@@ -25,7 +25,6 @@
 
   <body>
     <div class="app">
-      <!-- Header Section -->
       <header class="header" [class.hidden]="isHeaderHidden">
         <nav class="nav">
           <div class="container">
@@ -80,155 +79,10 @@
         </div>
       </header>
 
-      <!-- Hero Section -->
       <main class="main-content">
-        <div class="cart-page">
-          <div class="container">
-            <div class="cart-header">
-              <h1>Shopping Cart</h1>
-              <p class="cart-description" *ngIf="cartSummary.totalItems > 0">
-                Review your selected hosting plans before checkout
-              </p>
-            </div>
 
-            <div class="cart-content" *ngIf="cartSummary.totalItems > 0; else emptyCart">
-              <div class="cart-items">
-                <div class="cart-item card" *ngFor="let item of cartSummary.items">
-                  <div class="item-details">
-                    <div class="item-header">
-                      <h3>{{ item.plan.name }}</h3>
-                      <button class="remove-btn" (click)="removeItem(item.id)" title="Remove from cart">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                    </div>
-                    <p class="item-description">{{ item.plan.description }}</p>
-                    
-                    <div class="item-options">
-                      <div class="billing-cycle">
-                        <span class="label">Billing:</span>
-                        <span class="value">{{ item.billingCycle | titlecase }}</span>
-                        <span class="savings" *ngIf="item.billingCycle === 'yearly'">
-                          (Save {{ getSavingsPercentage(item) }}%)
-                        </span>
-                      </div>
-                      <div class="currency">
-                        <span class="label">Currency:</span>
-                        <span class="value">{{ item.currency }}</span>
-                      </div>
-                    </div>
-
-                    <div class="item-features">
-                      <h4>Included Features:</h4>
-                      <ul class="features-list">
-                        <li *ngFor="let feature of item.plan.features.slice(0, 3)">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                            <polyline points="20,6 9,17 4,12"></polyline>
-                          </svg>
-                          {{ feature }}
-                        </li>
-                        <li *ngIf="item.plan.features.length > 3" class="more-features">
-                          +{{ item.plan.features.length - 3 }} more features
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="item-pricing">
-                    <div class="quantity-controls">
-                      <label>Quantity:</label>
-                      <div class="quantity-input">
-                        <button (click)="updateQuantity(item.id, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
-                        <span class="quantity">{{ item.quantity }}</span>
-                        <button (click)="updateQuantity(item.id, item.quantity + 1)">+</button>
-                      </div>
-                    </div>
-
-                    <div class="price-breakdown">
-                      <div class="unit-price">
-                        <span class="currency-symbol">{{ item.currency === 'USD' ? '$' : 'C$' }}</span>
-                        <span class="amount">{{ item.price.toFixed(2) }}</span>
-                        <span class="period">/{{ item.billingCycle === 'yearly' ? 'year' : 'month' }}</span>
-                      </div>
-                      <div class="total-price" *ngIf="item.quantity > 1">
-                        <span class="label">Total:</span>
-                        <span class="currency-symbol">{{ item.currency === 'USD' ? '$' : 'C$' }}</span>
-                        <span class="amount">{{ (item.price * item.quantity).toFixed(2) }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="cart-summary card">
-                <h2>Order Summary</h2>
-                
-                <div class="summary-details">
-                  <div class="summary-row">
-                    <span>Items ({{ cartSummary.totalItems }}):</span>
-                    <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ cartSummary.subtotal.toFixed(2) }}</span>
-                  </div>
-                  <div class="summary-row">
-                    <span>Setup Fee:</span>
-                    <span class="free">Free</span>
-                  </div>
-                  <div class="summary-row total">
-                    <span>Total:</span>
-                    <span>{{ cartSummary.currency === 'USD' ? '$' : 'C$' }}{{ cartSummary.subtotal.toFixed(2) }}</span>
-                  </div>
-                </div>
-
-                <div class="checkout-actions">
-                  <button class="btn btn-primary btn-full checkout-btn">
-                    Proceed to Checkout
-                  </button>
-                  <button class="btn btn-secondary btn-full" (click)="clearCart()">
-                    Clear Cart
-                  </button>
-                  <a routerLink="/pricing" class="continue-shopping">
-                    ← Continue Shopping
-                  </a>
-                </div>
-
-                <div class="security-badges">
-                  <div class="security-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    <span>Secure Checkout</span>
-                  </div>
-                  <div class="security-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                      <path d="M9 12l2 2 4-4"></path>
-                      <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path>
-                    </svg>
-                    <span>30-Day Money Back</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <ng-template #emptyCart>
-              <div class="empty-cart">
-                <div class="empty-cart-icon">
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                  </svg>
-                </div>
-                <h2>Your cart is empty</h2>
-                <p>Discover our hosting plans and add them to your cart to get started.</p>
-                <a routerLink="/pricing" class="btn btn-primary btn-lg">Browse Plans</a>
-              </div>
-            </ng-template>
-          </div>
-        </div>
       </main>
-
-      <!-- Footer Section -->
+      
       <footer class="footer bg-gray-900">
         <div class="container">
           <div class="footer-content">
