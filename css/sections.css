@@ -452,7 +452,7 @@ hero-content
 }
 
 .section-header {
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-24);
 }
 
 .section-header h2 {
@@ -597,7 +597,8 @@ hero-content
 
 .plan-card.featured {
   border-color: var(--primary-600);
-  transform: scale(1.05);
+  bottom: 30px;
+  transform: scale(1.04);
 }
 
 .plan-badge {

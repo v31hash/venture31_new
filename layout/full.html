@@ -30,7 +30,7 @@
           <div class="container">
             <div class="nav-content">
               <div class="nav-brand">
-                <a class="nav-brand-link">
+                <a href="/" class="nav-brand-link">
                   <img class="nav-brand-logo" src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31">
                   <span class="nav-brand-text">Venture31</span>
                 </a>
@@ -55,8 +55,8 @@
                   </div>
                 </a>
                 <div *ngIf="!isLoggedIn; else loggedInMenu">
-                  <a routerLink="/login" class="nav-action-link">Login</a>
-                  <a routerLink="/register" class="nav-action-primary-link">Sign Up</a>
+                  <a href="auth/login.html" class="nav-action-link">Login</a>
+                  <a href="auth/register.html" class="nav-action-primary-link">Sign Up</a>
                 </div>
               </div>
               
@@ -88,7 +88,7 @@
           <div class="footer-content">
             <div class="footer-section">
               <div class="footer-brand">
-                <a routerLink="/" class="footer-brand-link">
+                <a href="/" class="footer-brand-link">
                   <img src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31" class="footer-brand-logo">
                   <span class="footer-brand-text">Venture31</span>
                 </a>

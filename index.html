@@ -31,7 +31,7 @@
           <div class="container">
             <div class="nav-content">
               <div class="nav-brand">
-                <a class="nav-brand-link">
+                <a href="/" class="nav-brand-link">
                   <img class="nav-brand-logo" src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31">
                   <span class="nav-brand-text">Venture31</span>
                 </a>
@@ -56,8 +56,8 @@
                   </div>
                 </a>
                 <div *ngIf="!isLoggedIn; else loggedInMenu">
-                  <a routerLink="/login" class="nav-action-link">Login</a>
-                  <a routerLink="/register" class="nav-action-primary-link">Sign Up</a>
+                  <a href="auth/login.html" class="nav-action-link">Login</a>
+                  <a href="auth/register.html" class="nav-action-primary-link">Sign Up</a>
                 </div>
               </div>
               
@@ -94,10 +94,10 @@
                   Built on Google Cloud infrastructure with free WordPress, built-in caching, and 24/7 monitoring.
                 </p>
                 <div class="hero-actions">
-                  <button (click)="addStarterPlanToCart()" class="btn btn-primary btn-lg" [disabled]="isLoading">
+                  <button (click)="addStarterPlanToCart()" class="btn btn-primary btn-lg">
                     Get Started
                   </button>
-                  <a routerLink="/pricing" class="btn btn-secondary btn-lg">View Plans</a>
+                  <a href="pricing.html" class="btn btn-secondary btn-lg">View Plans</a>
                 </div>
                 <div class="hero-stats">
                   <div class="stat">
@@ -127,8 +127,8 @@
                         <stop offset="100%" style="stop-color:var(--primary-500);stop-opacity:0.8" />
                       </linearGradient>
                       <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:var(--gray-200);stop-opacity:0.6" />
-                        <stop offset="100%" style="stop-color:var(--gray-300);stop-opacity:0.6" />
+                        <stop offset="0%" style="stop-color:var(--gray-200);stop-opacity:0.5" />
+                        <stop offset="100%" style="stop-color:var(--gray-300);stop-opacity:0.5" />
                       </linearGradient>
                     </defs>
                     
@@ -323,9 +323,8 @@
           <div class="container">
             <div class="section-header text-center">
               <h2>Simple, Transparent Pricing</h2>
-              <p class="section-description">
-                Professional hosting starting at just $14.35/month with everything you need included
-              </p>
+              <p class="section-description">All Plans include:</p>
+              <p>Free domain name, Free website transfer, Free daily Backups 24/7 Expert Support, 30-day money-back guarantee</p>
             </div>
             
             <div class="plans-grid">
@@ -333,66 +332,79 @@
                 <div class="plan-content">
                   <div class="plan-header">
                     <h3>Startup</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$15.35</span>
+                      <span class="discount">SAVE 80%</span>
+                    </div>
                     <div class="plan-price">
                       <span class="currency">$</span>
-                      <span class="amount">0.00</span>
+                      <span class="amount">2.99</span>
                       <span class="period">/month</span>
+                      <p>Renews at {retail}/mo. Prepaid for 12 months. Ex. TAX</p>
                     </div>
                   </div>
                   <ul class="plan-features">
-                    <li>Startup</li>
+                    <li>Features</li>
                   </ul>
                 </div>
                 <div class="plan-footer">
-                  <button (click)="addToCart(plan)"
-                          [class]="plan.is_featured ? 'btn btn-primary plan-btn' : 'btn btn-secondary plan-btn'">
+                  <button (click)="addStarterPlanToCart()" class="btn btn-primary plan-btn">
                     Get Started
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div class="plans-grid">
-              <div class="plan-card card">
+            
+              <div class="plan-card featured card">
                 <div class="plan-content">
                   <div class="plan-header">
                     <h3>Positive Growth</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$24.35</span>
+                      <span class="discount">SAVE 80%</span>
+                    </div>
                     <div class="plan-price">
                       <span class="currency">$</span>
-                      <span class="amount">0.00</span>
+                      <span class="amount">3.99</span>
                       <span class="period">/month</span>
+                      <p>Renews at {retail}/mo. Prepaid for 12 months. Ex. TAX</p>
                     </div>
                   </div>
                   <ul class="plan-features">
-                    <li>Positive Growth</li>
+                    <li>Features</li>
                   </ul>
                 </div>
                 <div class="plan-footer">
                   <div class="plan-badge">Best Value</div>
-                  <button class="btn btn-primary plan-btn">
+                  <button (click)="addGrowthPlanToCart()" class="btn btn-primary plan-btn">
                     Get Started
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div class="plans-grid">
+            
               <div class="plan-card card">
                 <div class="plan-content">
                   <div class="plan-header">
                     <h3>Business</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$36.99</span>
+                      <span class="discount">SAVE 80%</span>
+                    </div>
                     <div class="plan-price">
                       <span class="currency">$</span>
-                      <span class="amount">0.00</span>
+                      <span class="amount">7.99</span>
                       <span class="period">/month</span>
+                      <p>Renews at {retail}/mo. Prepaid for 12 months. Ex. TAX</p>
                     </div>
                   </div>
                   <ul class="plan-features">
-                    <li>Business</li>
+                    <li>Features</li>
                   </ul>
                 </div>
                 <div class="plan-footer">
-                  <button class="btn btn-primary plan-btn">
+                  <button (click)="addBusinessPlanToCart()" class="btn btn-primary plan-btn">
                     Get Started
                   </button>
                 </div>
@@ -411,8 +423,8 @@
                 Join businesses worldwide who trust Venture31 for fast, secure, and eco-friendly web hosting.
               </p>
               <div class="cta-actions">
-                <a class="btn btn-accent btn-lg">Choose a Plan</a>
-                <a class="btn btn-secondary btn-lg">Contact Sales</a>
+                <a href="pricing.html" class="btn btn-accent btn-lg">Choose a Plan</a>
+                <a href="contact.html" class="btn btn-secondary btn-lg">Contact Sales</a>
               </div>
             </div>
           </div>
@@ -425,7 +437,7 @@
           <div class="footer-content">
             <div class="footer-section">
               <div class="footer-brand">
-                <a routerLink="/" class="footer-brand-link">
+                <a href="/" class="footer-brand-link">
                   <img src="https://venture31.com/wp-content/uploads/2024/11/V31_icon_88px.png" alt="Venture31" class="footer-brand-logo">
                   <span class="footer-brand-text">Venture31</span>
                 </a>
