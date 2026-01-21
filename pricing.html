@@ -91,77 +91,187 @@
                 Professional web hosting starting at just $14.33/month. All plans include Google Cloud infrastructure, 
                 free WordPress, built-in caching, and 24/7 security monitoring.
               </p>
-              
-              <div class="pricing-controls">
-                <div class="currency-toggle">
-                  <span [class.active]="selectedCurrency === 'USD'" (click)="setCurrency('USD')">USD ($)</span>
-                  <span [class.active]="selectedCurrency === 'CAD'" (click)="setCurrency('CAD')">CAD ($)</span>
-                </div>
-                
-                <div class="billing-toggle">
-                  <span [class.active]="!isAnnual" (click)="isAnnual = false">Monthly</span>
-                  <div class="toggle-switch" (click)="toggleBilling()">
-                    <div class="toggle-slider" [class.annual]="isAnnual"></div>
-                  </div>
-                  <span [class.active]="isAnnual" (click)="isAnnual = true">
-                    Annual <span class="save-badge">Save 20%</span>
-                  </span>
-                </div>
-              </div>
             </div>
 
-            <div class="plans-grid" *ngIf="plans.length > 0">
-              <div class="plan-card card" *ngFor="let plan of plans; let i = index" [class.featured]="plan.is_featured">
-                <div class="plan-badge" *ngIf="plan.is_featured">Most Popular</div>
-                
+            <!-- Plans Section -->
+            <div class="plans-grid">
+              <div class="plan-card card">
                 <div class="plan-content">
                   <div class="plan-header">
-                    <div class="plan-icon" [style.background-color]="getIconColor(i) + '20'" [style.color]="getIconColor(i)">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path [attr.d]="getIconPath(i)"></path>
-                      </svg>
+                    <h3>Startup</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$15.35</span>
+                      <span class="discount">SAVE 80%</span>
                     </div>
-                    <h3>{{ plan.name }}</h3>
-                    <p class="plan-subtitle">{{ plan.description }}</p>
-                  </div>
-
-                  <div class="plan-pricing">
-                    <div class="price-display">
-                      <span class="currency">{{ selectedCurrency === 'USD' ? '$' : 'C$' }}</span>
-                      <span class="amount">{{ getCurrentPrice(plan) }}</span>
-                      <span class="period">/{{ isAnnual ? 'year' : 'month' }}</span>
+                    <div class="plan-price">
+                      <span class="currency">$</span>
+                      <span class="amount">2.99</span>
+                      <span class="period">/month</span>
+                      <p>Renews at $15.35/mo. Prepaid for 12 months. Ex. TAX</p>
                     </div>
-                    <ng-container *ngIf="isAnnual">
-                      <div class="price-note">
-                        {{ 'Save ' + (selectedCurrency === 'USD' ? '$' : 'C$') + getSavings(plan) + '/month' }}
-                      </div>
-                    </ng-container>
                   </div>
-
                   <ul class="plan-features">
-                    <li *ngFor="let feature of plan.features" class="feature-item">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success-500)" stroke-width="2">
-                        <polyline points="20,6 9,17 4,12"></polyline>
-                      </svg>
-                      {{ feature }}
-                    </li>
+                    <h5 class="top">Core Features</h5>
+                    <li>1 website, unlimited traffic</li>
+                    <li>5 GB Premium Google storage</li>
+                    <li>Features</li>
+                    <li>Core Features</li>
+                    <li>Free Domain</li>
+                    <li>Free SSL, CDN, Backups</li>
+                    <li>Free Email</li>
+                    <li>Multilevel caching</li>
+                    <li>Enhanced Security
+                    <li>Collaborators</li>
+                    <h5>v31 Website Builder</h5>
+                    <li>Easy Site Building</li>
+                    <li>AI Content Generation</li>
+                    <li>Professional Templates</li>
+                    <li>Free Image Gallery</li>
+                    <li>Built-in SEO</li>
+                    <h5>WordPress Service</h5>
+                    <li>Free site migrations</li>
+                    <li>Managed autoupdates</li>
+                    <li>WP-CLI and SSH</li>
+                    <li>AI Agent for WordPress New</li>
+                    <li>Free AI tokens</li>
                   </ul>
                 </div>
-
                 <div class="plan-footer">
-                  <button (click)="addToCart(plan)" 
-                          class="btn btn-accent btn-full add-to-cart-btn">
+                  <button (click)="addStarterPlanToCart()" class="btn btn-primary plan-btn">
                     Get Started
                   </button>
-                  <p class="plan-trial">30-day money-back guarantee</p>
+                  <div>
+                    <p class="plan-trial">30-day money-back guarantee</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="plan-card featured card">
+                <div class="plan-content">
+                  <div class="plan-header">
+                    <h3>Positive Growth</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$24.35</span>
+                      <span class="discount">SAVE 80%</span>
+                    </div>
+                    <div class="plan-price">
+                      <span class="currency">$</span>
+                      <span class="amount">3.99</span>
+                      <span class="period">/month</span>
+                      <p>Renews at $24.35/mo. Prepaid for 12 months. Ex. TAX</p>
+                    </div>
+                  </div>
+                  <ul class="plan-features-exclusive">
+                    <h5 class="top">Exclusive Features</h5>
+                    <li>On-Demand Backups</li>
+                    <li>30% Faster PHP</li>
+                    <li>Staging</li>
+                  </ul>
+                  <ul class="plan-features">
+                    <h5>Core Features</h5>
+                    <li>1 website, unlimited traffic</li>
+                    <li>10 GB Premium Google storage</li>
+                    <li>Features</li>
+                    <li>Core Features</li>
+                    <li>Free Domain</li>
+                    <li>Free SSL, CDN, Backups</li>
+                    <li>Free Email</li>
+                    <li>Multilevel caching</li>
+                    <li>Enhanced Security
+                    <li>Collaborators</li>
+                    <h5>v31 Website Builder</h5>
+                    <li>Easy Site Building</li>
+                    <li>AI Content Generation</li>
+                    <li>Professional Templates</li>
+                    <li>Free Image Gallery</li>
+                    <li>Built-in SEO</li>
+                    <h5>WordPress Service</h5>
+                    <li>Free site migrations</li>
+                    <li>Managed autoupdates</li>
+                    <li>WP-CLI and SSH</li>
+                    <li>AI Agent for WordPress New</li>
+                    <li>Free AI tokens</li>
+                  </ul>
+                </div>
+                <div class="plan-footer">
+                  <div class="plan-badge">Best Value</div>
+                  <button (click)="addGrowthPlanToCart()" class="btn btn-primary plan-btn">
+                    Get Started
+                  </button>
+                  <div>
+                    <p class="plan-trial">30-day money-back guarantee</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="plan-card card">
+                <div class="plan-content">
+                  <div class="plan-header">
+                    <h3>Business</h3>
+                    <p>For small and personal projects sites</p>
+                    <div class="plan-price-sale">
+                      <span class="retail">$36.99</span>
+                      <span class="discount">SAVE 80%</span>
+                    </div>
+                    <div class="plan-price">
+                      <span class="currency">$</span>
+                      <span class="amount">7.99</span>
+                      <span class="period">/month</span>
+                      <p>Renews at $36.99/mo. Prepaid for 12 months. Ex. TAX</p>
+                    </div>
+                  </div>
+                  <ul class="plan-features-exclusive">
+                    <h5 class="top">Exclusive Features</h5>
+                    <li>On-Demand Backups</li>
+                    <li>30% Faster PHP</li>
+                    <li>Staging + Git</li>
+                    <li>Private DNS</li>
+                    <li>White Label Access</li>
+                    <li>Priority Support</li>
+                  </ul>
+                  <ul class="plan-features">
+                    <h5>Core Features</h5>
+                    <li>1 website, unlimited traffic</li>
+                    <li>30 GB Premium Google storage</li>
+                    <li>Features</li>
+                    <li>Core Features</li>
+                    <li>Free Domain</li>
+                    <li>Free SSL, CDN, Backups</li>
+                    <li>Free Email</li>
+                    <li>Multilevel caching</li>
+                    <li>Enhanced Security
+                    <li>Collaborators</li>
+                    <h5>v31 Website Builder</h5>
+                    <li>Easy Site Building</li>
+                    <li>AI Content Generation</li>
+                    <li>Professional Templates</li>
+                    <li>Free Image Gallery</li>
+                    <li>Built-in SEO</li>
+                    <h5>WordPress Service</h5>
+                    <li>Free site migrations</li>
+                    <li>Managed autoupdates</li>
+                    <li>WP-CLI and SSH</li>
+                    <li>AI Agent for WordPress New</li>
+                    <li>Free AI tokens</li>
+                  </ul>
+                </div>
+                <div class="plan-footer">
+                  <button (click)="addBusinessPlanToCart()" class="btn btn-primary plan-btn">
+                    Get Started
+                  </button>
+                  <div>
+                    <p class="plan-trial">30-day money-back guarantee</p>
+                  </div>
+                </div>
+              </div>
+            </div>
                 </div>
               </div>
             </div>
 
-            <div class="loading-state" *ngIf="isLoading">
-              <p>Loading pricing plans...</p>
-            </div>
-
+            <!-- Comparison Section -->
             <div class="features-comparison">
               <h2 class="text-center">What's Included in Every Plan</h2>
               <div class="included-features">
@@ -263,6 +373,7 @@
               </div>
             </div>
 
+            <!-- FAQ Section -->
             <div class="faq-section">
               <h2 class="text-center">Frequently Asked Questions</h2>
               <div class="faq-grid">
