@@ -24,7 +24,7 @@
 .about-section {
   background: white;
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
+  /* box-shadow: var(--shadow-md); */
   padding: var(--space-10);
   margin-bottom: var(--space-12);
 }
@@ -83,7 +83,7 @@
 .green-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: var(--space-12);
+  gap: var(--space-3);
   align-items: center;
 }
 
@@ -211,6 +211,14 @@
   .green-section h2 {
     text-align: center;
   }
+
+  /* .green-visual {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+    max-width: 900px;
+    margin: 0 auto;
+  } */
 
   .performance-grid {
     grid-template-columns: repeat(2, 1fr);

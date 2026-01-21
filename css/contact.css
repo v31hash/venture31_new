@@ -23,7 +23,10 @@
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  /* grid-template-columns: 1fr 1.5fr; */
+  grid-template-columns: 1fr;
+  justify-self: center;
+  max-width: 900px;
   gap: var(--space-12);
   margin-bottom: var(--space-20);
 }

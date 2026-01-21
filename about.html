@@ -88,26 +88,26 @@
             <div class="container">
               <div class="about-header text-center">
                 <h1>About Venture31</h1>
-                <p class="about-description">
+                <!-- <p class="about-description">
                   <span *ngIf="!isLoading && plans.length > 0">
                     Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $ {{ getStartingPrice() }} per month, powered by Google Cloud infrastructure.
                   </span>
                   <span *ngIf="isLoading">
                     Fast and secure web hosting with 99.9% uptime guarantee, <br>starting at just $14.33 per month, powered by Google Cloud infrastructure.
                   </span>
-                </p>
+                </p> -->
               </div>
 
               <div class="about-section">
                 <h2>Our Mission</h2>
                 <p>
-                  <span *ngIf="!isLoading && plans.length > 0">
+                  <!-- <span *ngIf="!isLoading && plans.length > 0">
                     At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
                     Starting at just $ {{ getStartingPrice() }} per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
-                  </span>
+                  </span> -->
                   <span *ngIf="isLoading">
                     At Venture31, we specialize in providing fast and secure web hosting solutions specifically designed for small and medium-sized businesses. 
-                    Starting at just $14.33 per month, we make professional web hosting accessible to everyone, without compromising on quality or performance.
+                    We make professional web hosting accessible to everyone, without compromising on quality or performance.
                   </span>
                 </p>
               </div>
@@ -202,6 +202,7 @@
                       When you choose Venture31, you're not just getting superior hosting – you're making an environmentally responsible choice.
                     </p>
                   </div>
+                  <!-- change on window size -->
                   <div class="green-visual">
                     <div class="green-stats">
                       <div class="green-stat">
@@ -254,8 +255,8 @@
                     Join businesses worldwide who trust Venture31 for fast, secure, and environmentally responsible web hosting.
                   </p>
                   <div class="cta-actions">
-                    <a routerLink="/register" class="btn btn-accent btn-lg">Get Started Today</a>
-                    <a routerLink="/contact" class="btn btn-secondary btn-lg">Contact Us</a>
+                    <a href="pricing.html" title="Get Started Today" class="btn btn-accent btn-lg">Get Started Today</a>
+                    <a href="contact.html" title="Contact Us" class="btn btn-secondary btn-lg">Contact Us</a>
                   </div>
                 </div>
               </div>
